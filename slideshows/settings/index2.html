@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" rel="stylesheet" type="text/css" media="all" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" type="text/javascript"></script>
+<style>
+
+.centered-slider {
+  float: none;
+  display: block !important;  
+  margin: 0 auto !important;
+  max-width: 90% !important;
+  width: 1000px !important;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.slider-image { 
+  margin: 0 auto !important;
+  max-width: 95% !important;
+  max-height: 75vh;
+  -webkit-box-shadow: 1px 1px 12px #444;
+  -moz-box-shadow: 1px 1px 12px #444;
+  -o-box-shadow: 1px 1px 12px #444;
+  box-shadow: 1px 1px 12px #444;
+  @media only screen and (max-width: $medium) {
+    -webkit-box-shadow: 1px 1px 6px #444;
+    -moz-box-shadow: 1px 1px 6px #444;
+    -o-box-shadow: 1px 1px 6px #444;
+    box-shadow: 1px 1px 6px #444;
+  }
+}
+    
+.slider-image-div{
+  padding: 15px !important;
+  @media only screen and (max-width: $medium) {
+    padding: 8px !important;
+  }
+}
+
+.slider-testimonial, .slider-featuredin{
+  width: 1180px;
+  max-width: 100%;
+  margin: auto !important;
+}
+
+@media only screen and (max-width: $medium) {
+.slider-testimonial, .slider-featuredin{
+    width: auto;
+    min-width: 0;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+  }
+}
+    
+.slick-prev {
+  left: -5px;
+}
+
+.slick-next {
+  right: -5px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #4ac5e6;  
+}
+
+.slick-dots{
+  bottom: -10px;
+  position: relative;
+}
+
+.slick-dots li button:before {
+    color: #4ab5e8;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #204576;
+}
+</style>
+<body>
+
+<div class="slider fade centered-slider">
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-theme.png" alt="POWER CSV Settings - Theme" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-ribbon-tab-position.png" alt="POWER CSV Settings - Ribbon Tab Position" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-task-pane-position.png" alt="POWER CSV Settings - Task Pane Position" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-text-alignment.png" alt="POWER CSV Settings - Text Alignment" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-addin-update-notifications.png" alt="POWER CSV Settings - Addin Update Notifications" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-error-checking-rules.png" alt="POWER CSV Settings - Error Checking Rules" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-progress-bars.png" alt="POWER CSV Settings - Progress Bars" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-file-explorer.png" alt="POWER CSV Settings - File Explorer" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-ribbon-buttons.png" alt="POWER CSV Settings - Ribbon Buttons" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-new-workbook.png" alt="POWER CSV Settings - New Workbook" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-open-file.png" alt="POWER CSV Settings - Open File" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-import-file.png" alt="POWER CSV Settings - Import File" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-import-from-clipboard.png" alt="POWER CSV Settings - Import From Clipboard" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-advanced-import-settings.png" alt="POWER CSV Settings - Advanced Import Settings" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-save-file.png" alt="POWER CSV Settings - Save File" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-save-new-file.png" alt="POWER CSV Settings - Save New File" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-export-file.png" alt="POWER CSV Settings - Export File" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-export-new-file.png" alt="POWER CSV Settings - Export New File" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-insert.png" alt="POWER CSV Settings - Insert" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-sort.png" alt="POWER CSV Settings - Sort" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-find-duplicates.png" alt="POWER CSV Settings - Find Duplicates" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-filter-views.png" alt="POWER CSV Settings - Filter Views" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-record-editor.png" alt="POWER CSV Settings - Record Editor" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-cell-editor.png" alt="POWER CSV Settings - Cell Editor" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-bookmarks.png" alt="POWER CSV Settings - Bookmarks" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-settings-file-properties.png" alt="POWER CSV Settings - File Properties" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-dialog-export-settings.png" alt="POWER CSV Dialog - Export Settings" class="slider-image" />
+</div>
+<div class="slider-image-div">
+<img src="https://cdn.powercsv.com/file/display/power-csv-dialog-system-info.png" alt="POWER CSV Dialog - System Info" class="slider-image" />
+</div>
+</div>
+<script>
+  $('.fade').slick({
+  dots: true,
+  infinite: true,
+  speed: 500,
+  fade: true,
+  cssEase: 'linear',
+  swipeToSlide: false,
+  touchMove: false,
+  swipe: false,
+  adaptiveHeight: true,
+  autoplay: false,
+  arrows: true
+});
+window.addEventListener('load', function(){  
+  $('.centered-slider').css('opacity', '1');
+  $('.centered-slider').css('visibility', 'visible');
+});
+</script>
+</body>
+</html>
