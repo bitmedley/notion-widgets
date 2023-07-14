@@ -13,10 +13,10 @@
     $(function() {
         let searchParams = new URLSearchParams(window.location.search);
         if(searchParams.has('color-scheme') && searchParams.get('color-scheme') === "dark") {
-            $head.append('<meta name="color-scheme" content="dark">');
+            $('head').append('<meta name="color-scheme" content="dark">');
         }
         else {
-            $head.append('<meta name="color-scheme" content="light">');
+            $('head').append('<meta name="color-scheme" content="light">');
         }
         $('.carousel').carousel({ interval: 1500, wrap: true });
     });
