@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
+    <!--meta name="color-scheme" content="light dark"-->
     <title>POWER CSV - File Ribbon Group</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
@@ -12,8 +12,8 @@
     <script>
     $(function() {
         let searchParams = new URLSearchParams(window.location.search);
-        $('[name="color-scheme"]').remove()
-        if(searchParams.has('color-scheme') && searchParams.get('color-scheme') === "dark") {          
+        //$('[name="color-scheme"]').remove();
+        if(searchParams.has('color-scheme') && searchParams.get('color-scheme') === "dark") {
             $('head').append('<meta name="color-scheme" content="dark">');
         }
         else {
