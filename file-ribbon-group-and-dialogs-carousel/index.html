@@ -12,7 +12,8 @@
     <script>
     $(function() {
         let searchParams = new URLSearchParams(window.location.search);
-        if(searchParams.has('color-scheme') && searchParams.get('color-scheme') === "dark") {
+        $('[name="color-scheme"]').remove()
+        if(searchParams.has('color-scheme') && searchParams.get('color-scheme') === "dark") {          
             $('head').append('<meta name="color-scheme" content="dark">');
         }
         else {
