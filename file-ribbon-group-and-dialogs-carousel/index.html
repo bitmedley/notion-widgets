@@ -12,13 +12,17 @@
     <script>
     $(function() {
         let searchParams = new URLSearchParams(window.location.search);
+        let metaColorScheme = '<meta name="color-scheme" content="light dark">';
+        if(searchParams.has('color-scheme')) {
+            if(searchParams.get('color-scheme') === "dark") {
+                metaColorScheme = '<meta name="color-scheme" content="dark">';
+            }
+            else if(searchParams.get('color-scheme') === "light") {
+                metaColorScheme = '<meta name="color-scheme" content="light">';
+            }
+        }
         $('[name="color-scheme"]').remove();
-        if(searchParams.has('color-scheme') && searchParams.get('color-scheme') === "dark") {
-            $('head').append('<meta name="color-scheme" content="dark">');
-        }
-        else {
-            $('head').append('<meta name="color-scheme" content="light">');
-        }
+        $('head').append(metaColorScheme);
         $('.carousel').carousel({ interval: 1500, wrap: true });
     });
     </script>
