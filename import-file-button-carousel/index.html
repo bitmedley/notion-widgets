@@ -23,7 +23,7 @@
         }
         $('[name="color-scheme"]').remove();
         $('head').append(metaColorScheme);
-        $('.carousel').carousel({ interval: 1500, wrap: true });
+        $('.carousel').carousel({ interval: 3000, wrap: true });
     });
     </script>
     <style>
@@ -37,12 +37,12 @@
             object-fit: contain !important;
         }
         .carousel-item {
-          transition: transform 1.5s ease-in-out;
+          transition: transform 0.1s ease-in-out;
           display: none;
         }
         .carousel-fade .active.carousel-item-start,
         .carousel-fade .active.carousel-item-end {
-          transition: opacity 0s 1.5s;
+          transition: opacity 0s 0.1s;
           display: block;
         }
         .carousel-item img {
@@ -99,16 +99,16 @@
         <button type="button" data-bs-target="#notionCarouselWidget" data-bs-slide-to="3" aria-label="slide-04-advanced-import-settings-theme-style"></button>
       </div>
       <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="2000">
+        <div class="carousel-item active" data-bs-interval="3000">
           <img class="d-block w-100" src="slide-01-import-file.png" data-color="transparent">
         </div>
-        <div class="carousel-item" data-bs-interval="1500">
+        <div class="carousel-item" data-bs-interval="3000">
           <img class="d-block w-100" src="slide-02-advanced-import-settings-parsing-and-detection.png" data-color="transparent">
         </div>
-        <div class="carousel-item" data-bs-interval="1500">
+        <div class="carousel-item" data-bs-interval="3000">
           <img class="d-block w-100" src="slide-03-advanced-import-settings-formatting-and-display.png" data-color="transparent">
         </div>
-        <div class="carousel-item" data-bs-interval="2000">
+        <div class="carousel-item" data-bs-interval="3000">
           <img class="d-block w-100" src="slide-04-advanced-import-settings-theme-style.png" data-color="transparent">
         </div>
       </div>
