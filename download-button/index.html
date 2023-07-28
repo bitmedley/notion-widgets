@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="color-scheme" content="light dark">
+	<title>Download Button</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script>
+	function getQueryParams() {
+		//ex. url parameters: ?text=Download&align=center&color-scheme=dark&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
+		//encode URL using https://www.urlencoder.org/
+		var queryString = window.location.search;
+		var urlParams = new URLSearchParams(queryString);
+		var urlForButton = urlParams.get('url');
+		var buttonText = urlParams.get('text');
+		var buttonAlignment = urlParams.get('align').toLowerCase();
+		var colorScheme = urlParams.get('color-scheme').toLowerCase();
+		var buttonAnchor = document.getElementById("buttonAnchor");
+		buttonAnchor.setAttribute('href', urlForButton);
+		buttonAnchor.innerHTML = '<i class="fa fa-download"></i><span>' + buttonText + '</span>';
+		if(colorScheme === "light") document.querySelector('meta[name="color-scheme"]').content = "light";
+		else if(colorScheme === "dark") document.querySelector('meta[name="color-scheme"]').content = "dark";
+		if(buttonAlignment !== 'left' && buttonAlignment !== 'right') buttonAlignment = 'center';
+		document.getElementById("buttonDiv").setAttribute('style', 'text-align:' + buttonAlignment);
+	}
+	</script>
+	<style>
+	body {
+		background-color: transparent;
+	}
+	#buttonDiv {
+		padding: 5px;
+		text-align: center;
+	}
+	
+	#buttonAnchor {
+		font-size: 16px;
+		font-weight: 400;
+		font-family: open sans, Helvetica, Arial, sans-serif;
+		border-radius: 3px;
+		color: white;
+		background-color: #017791;
+		cursor: pointer;
+		display: inline-block;
+		line-height: 18px;
+		padding: 10px 20px;
+		text-decoration: none;
+	}
+	
+	#buttonAnchor:hover,
+	#buttonAnchor:focus {
+		background-color: #285265;
+	}
+	
+	.fa-download {
+		margin-right: 6px;
+		position: relative;
+		top: -1px;
+	}
+	</style>
+</head>
+
+<body onload="getQueryParams()">
+	<div id="buttonDiv"> <a id="buttonAnchor" href="" download><i class="fa fa-download"></i><span></span></a> </div>
+</body>
+
+</html>
