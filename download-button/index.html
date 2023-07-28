@@ -12,34 +12,45 @@
 	<script>
 	function getQueryParams() {
 		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=Download&align=center&color-scheme=dark&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
-		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=Download%20DontCorruptMe.csv&align=center&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
+		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=DontCorruptMe.csv&align=center&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
 		//encode URL using https://www.urlencoder.org/
+		
 		var queryString = window.location.search;
 		var urlParams = new URLSearchParams(queryString);
 		var urlForButton = urlParams.get('url');
+		if(!urlForButton.includes('powercsv.com')) return; 
 		var buttonText = urlParams.get('text');
 		var buttonAnchor = document.getElementById("buttonAnchor");
+		var buttonDiv = document.getElementById("buttonDiv");
 		buttonAnchor.setAttribute('href', urlForButton);
 		buttonAnchor.innerHTML = '<i class="fa fa-download"></i><span>' + buttonText + '</span>';
-		if(searchParams.has('color-scheme')) {
+		if(urlParams.has('color-scheme')) {
 			var colorScheme = urlParams.get('color-scheme').toLowerCase();
 			if(colorScheme === "light") document.querySelector('meta[name="color-scheme"]').content = "light";
 			else if(colorScheme === "dark") document.querySelector('meta[name="color-scheme"]').content = "dark";
 		}
-		if(searchParams.has('align')) {
+		if(urlParams.has('align')) {
 			var buttonAlignment = urlParams.get('align').toLowerCase();
 			if(buttonAlignment !== 'left' && buttonAlignment !== 'right') buttonAlignment = 'center';
-			document.getElementById("buttonDiv").setAttribute('style', 'text-align:' + buttonAlignment);
+			buttonDiv.setAttribute('style', 'text-align:' + buttonAlignment);
 		}
+		var style = document.createElement('style');
+		style.innerHTML = `#buttonDiv {display: block;}`;
+		document.head.appendChild(style);
 	}
 	</script>
 	<style>
 	body {
 		background-color: transparent;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+		margin: 0;
 	}
 	
 	#buttonDiv {
-		padding: 5px;
+		display: none;
 		text-align: center;
 	}
 	
