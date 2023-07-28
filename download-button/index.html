@@ -11,8 +11,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script>
 	function getQueryParams() {
-		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=Download&align=center&color-scheme=dark&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
-		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=DontCorruptMe.csv&align=center&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
+		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=Download&halign=center&color-scheme=dark&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
+		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=DontCorruptMe.csv&halign=center&valign=start&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
 		//encode URL using https://www.urlencoder.org/
 		
 		var queryString = window.location.search;
@@ -21,7 +21,6 @@
 		if(!urlForButton.includes('powercsv.com')) return; 
 		var buttonText = urlParams.get('text');
 		var buttonAnchor = document.getElementById("buttonAnchor");
-		var buttonDiv = document.getElementById("buttonDiv");
 		buttonAnchor.setAttribute('href', urlForButton);
 		buttonAnchor.innerHTML = '<i class="fa fa-download"></i><span>' + buttonText + '</span>';
 		if(urlParams.has('color-scheme')) {
@@ -29,10 +28,15 @@
 			if(colorScheme === "light") document.querySelector('meta[name="color-scheme"]').content = "light";
 			else if(colorScheme === "dark") document.querySelector('meta[name="color-scheme"]').content = "dark";
 		}
-		if(urlParams.has('align')) {
-			var buttonAlignment = urlParams.get('align').toLowerCase();
-			if(buttonAlignment !== 'left' && buttonAlignment !== 'right') buttonAlignment = 'center';
-			buttonDiv.setAttribute('style', 'text-align:' + buttonAlignment);
+		if(urlParams.has('halign')) {
+			var hAlign = urlParams.get('halign').toLowerCase();
+			if(hAlign !== 'left' && hAlign !== 'right') hAlign = 'center';
+			document.body.style.justifyContent = hAlign;
+		}
+		if(urlParams.has('valign')) {
+			var vAlign = urlParams.get('valign').toLowerCase();
+			if(vAlign !== 'start' && vAlign !== 'end') vAlign = 'center';
+			document.body.style.alignItems = vAlign;
 		}
 		var style = document.createElement('style');
 		style.innerHTML = `#buttonDiv {display: block;}`;
@@ -51,7 +55,6 @@
 	
 	#buttonDiv {
 		display: none;
-		text-align: center;
 	}
 	
 	#buttonAnchor {
