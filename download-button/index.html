@@ -12,26 +12,32 @@
 	<script>
 	function getQueryParams() {
 		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=Download&align=center&color-scheme=dark&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
+		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=Download%20DontCorruptMe.csv&align=center&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
 		//encode URL using https://www.urlencoder.org/
 		var queryString = window.location.search;
 		var urlParams = new URLSearchParams(queryString);
 		var urlForButton = urlParams.get('url');
 		var buttonText = urlParams.get('text');
-		var buttonAlignment = urlParams.get('align').toLowerCase();
-		var colorScheme = urlParams.get('color-scheme').toLowerCase();
 		var buttonAnchor = document.getElementById("buttonAnchor");
 		buttonAnchor.setAttribute('href', urlForButton);
 		buttonAnchor.innerHTML = '<i class="fa fa-download"></i><span>' + buttonText + '</span>';
-		if(colorScheme === "light") document.querySelector('meta[name="color-scheme"]').content = "light";
-		else if(colorScheme === "dark") document.querySelector('meta[name="color-scheme"]').content = "dark";
-		if(buttonAlignment !== 'left' && buttonAlignment !== 'right') buttonAlignment = 'center';
-		document.getElementById("buttonDiv").setAttribute('style', 'text-align:' + buttonAlignment);
+		if(searchParams.has('color-scheme')) {
+			var colorScheme = urlParams.get('color-scheme').toLowerCase();
+			if(colorScheme === "light") document.querySelector('meta[name="color-scheme"]').content = "light";
+			else if(colorScheme === "dark") document.querySelector('meta[name="color-scheme"]').content = "dark";
+		}
+		if(searchParams.has('align')) {
+			var buttonAlignment = urlParams.get('align').toLowerCase();
+			if(buttonAlignment !== 'left' && buttonAlignment !== 'right') buttonAlignment = 'center';
+			document.getElementById("buttonDiv").setAttribute('style', 'text-align:' + buttonAlignment);
+		}
 	}
 	</script>
 	<style>
 	body {
 		background-color: transparent;
 	}
+	
 	#buttonDiv {
 		padding: 5px;
 		text-align: center;
