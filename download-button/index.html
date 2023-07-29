@@ -85,7 +85,7 @@
 </head>
 
 <body onload="getQueryParams()">
-	<div id="buttonDiv"> <a id="buttonAnchor" href="" download><i class="fa fa-download"></i><span></span></a> </div>
+	<div id="buttonDiv"> <a id="buttonAnchor" href="" download onclick="event.preventDefault(); window.location.href=this.href;"><i class="fa fa-download"></i><span></span></a> </div>
 </body>
 
 </html>
