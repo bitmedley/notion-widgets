@@ -9,7 +9,6 @@
 	<link rel="canonical" href="https://notion-widgets.powercsv.com/download-button/index.html" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js" integrity="sha512-WiGQZv8WpmQVRUFXZywo7pHIO0G/o3RyiAJZj8YXNN4AV7ReR1RYWVmZJ6y3H06blPcjJmG/sBpOVZjTSFFlzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script>
 	function getQueryParams() {
 		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=Download&halign=center&color-scheme=dark&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
@@ -86,15 +85,6 @@
 </head>
 
 <body onload="getQueryParams()">
-	<div id="buttonDiv"> <a id="buttonAnchor" href="" download><i class="fa fa-download"></i><span></span></a> </div>
+	<div id="buttonDiv"> <a id="buttonAnchor" href="" target="_blank" download><i class="fa fa-download"></i><span></span></a> </div>
 </body>
-<script>
-<!-- Force the download by using download.js to stop iOS from showing a preview of the file -->
-document.querySelector('#buttonAnchor').addEventListener('click', function(event){
-	event.preventDefault();
-	var url = new URL(this.href);
-	var filename = url.pathname.split("/").pop();
-	download(this.href,filename);
-});
-</script>
 </html>
