@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="color-scheme" content="light dark">
+	<meta name="color-scheme">
 	<title>Download Button</title>
 	<link rel="canonical" href="https://notion-widgets.powercsv.com/download-button/index.html" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
@@ -23,6 +23,10 @@
 		var buttonAnchor = document.getElementById("buttonAnchor");
 		buttonAnchor.setAttribute('href', urlForButton);
 		buttonAnchor.innerHTML = '<i class="fa fa-download"></i><span>' + buttonText + '</span>';
+		var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+		if(iOS) {
+			buttonAnchor.setAttribute('target', '_blank');
+		}
 		if(urlParams.has('color-scheme')) {
 			var colorScheme = urlParams.get('color-scheme').toLowerCase();
 			if(colorScheme === "light") document.querySelector('meta[name="color-scheme"]').content = "light";
@@ -85,6 +89,6 @@
 </head>
 
 <body onload="getQueryParams()">
-	<div id="buttonDiv"> <a id="buttonAnchor" href="" target="_blank" download><i class="fa fa-download"></i><span></span></a> </div>
+	<div id="buttonDiv"> <a id="buttonAnchor" href="" download><i class="fa fa-download"></i><span></span></a> </div>
 </body>
 </html>
