@@ -13,18 +13,30 @@
     <script>
     $(function() {
         let searchParams = new URLSearchParams(window.location.search);
-        let metaColorScheme = '<meta name="color-scheme" content="light dark">';
-        if(searchParams.has('color-scheme')) {
-            if(searchParams.get('color-scheme') === "dark") {
-                metaColorScheme = '<meta name="color-scheme" content="dark">';
-            }
-            else if(searchParams.get('color-scheme') === "light") {
-                metaColorScheme = '<meta name="color-scheme" content="light">';
-            }
-        }
-        $('[name="color-scheme"]').remove();
-        $('head').append(metaColorScheme);
+		let metaColorScheme = '<meta name="color-scheme" content="light dark">';
+
+		if (searchParams.has('color-scheme')) {
+		  const colorScheme = searchParams.get('color-scheme');
+
+		  if (colorScheme === "dark") {
+			metaColorScheme = '<meta name="color-scheme" content="dark">';
+		  } else if (colorScheme === "light") {
+			metaColorScheme = '<meta name="color-scheme" content="light">';
+		  }
+		}
+
+		$('head meta[name="color-scheme"]').remove();
+		$('head').append(metaColorScheme);
         $('.carousel').carousel({ interval: 1500, keyboard: false, pause: false, ride: "carousel", touch: false, wrap: true });
+		
+		// Get the meta color-scheme value
+let metaColorScheme = $('meta[name="color-scheme"]').attr('content');
+
+// Create a new div element
+let divElement = $('<div>').text(metaColorScheme);
+
+// Add the div element to the top of the body tag
+$('body').prepend(divElement);
     });
     </script>
     <style>
