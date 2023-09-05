@@ -27,17 +27,18 @@
 
 		$('head meta[name="color-scheme"]').remove();
 		$('head').append(metaColorScheme);
-        $('.carousel').carousel({ interval: 1500, keyboard: false, pause: false, ride: "carousel", touch: false, wrap: true });
-		
-		// Get the meta color-scheme value
-let colorScheme = $('meta[name="color-scheme"]').attr('content');
-
-// Create a new div element
-let divElement = $('<div>').text(colorScheme + ' ' + window.location);
-
-// Add the div element to the top of the body tag
-$('body').prepend(divElement);
+        $('.carousel').carousel({ interval: 1500, keyboard: false, pause: false, ride: "carousel", touch: false, wrap: true });		
     });
+	
+	window.addEventListener('message', function(event) {
+		if (event.data === 'dark') {
+		  // Update the meta color-scheme tag for dark color theme
+		  document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'dark');
+		} else {
+		  // Update the meta color-scheme tag for light color theme
+		  document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light');
+		}	  
+	});
     </script>
     <style>
         body {
