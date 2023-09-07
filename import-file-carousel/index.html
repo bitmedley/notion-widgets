@@ -13,17 +13,17 @@
     <script>
     $(function() {
         let searchParams = new URLSearchParams(window.location.search);
-        let metaColorScheme = '<meta name="color-scheme" content="light dark">';
-        if(searchParams.has('color-scheme')) {
-            if(searchParams.get('color-scheme') === "dark") {
-                metaColorScheme = '<meta name="color-scheme" content="dark">';
-            }
-            else if(searchParams.get('color-scheme') === "light") {
-                metaColorScheme = '<meta name="color-scheme" content="light">';
-            }
-        }
-        $('[name="color-scheme"]').remove();
-        $('head').append(metaColorScheme);
+		let metaColorScheme = '<meta name="color-scheme" content="light dark">';
+		if (searchParams.has('color-scheme')) {
+			let colorScheme = searchParams.get('color-scheme');
+			if (colorScheme === "dark") {
+				metaColorScheme = '<meta name="color-scheme" content="dark">';
+			} else if (colorScheme === "light") {
+				metaColorScheme = '<meta name="color-scheme" content="light">';
+			}
+		}
+		$('head [name="color-scheme"]').remove();
+		$('head').append(metaColorScheme);
         $('.carousel').carousel({ interval: 3000, keyboard: false, pause: "hover", ride: "carousel", touch: true, wrap: true });
     });
 	
