@@ -37,6 +37,7 @@
 		});
 
 		window.addEventListener("message", function(event) {
+			alert('message received');
 			if (event.data.colorScheme === "dark") {
 				// Update the meta color-scheme tag for dark color theme
 				document.querySelector('meta[name="color-scheme"]').setAttribute("content", "dark");
