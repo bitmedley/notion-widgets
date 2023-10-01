@@ -45,7 +45,7 @@
 				document.querySelector('meta[name="color-scheme"]').setAttribute("content", "light");
 			}
 			// Send a message back to the parent window
-			event.source.postMessage({ id: event.data.id }, event.origin);
+			window.parent.postMessage({ id: event.data.id }, event.origin);
 		});
 	</script>
 	<style>
