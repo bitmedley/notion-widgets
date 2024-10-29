@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme">
+    <title>Circled Number</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.powercsv.com/file/display/favicon.ico" />
+    <link rel="canonical" href="https://notion-widgets.powercsv.com/circled-number/index.html" />    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif; /* Font family */
+        }
+        .circle {
+            color: white; /* Font color */
+            font-size: 20px; /* Font size */
+            font-weight: bold; /* Font weight */
+            width: 50px; /* Fixed width for the circle */
+            height: 50px; /* Fixed height for the circle */
+            border-radius: 50%; /* Circle effect */
+            background-color: #017791; /* Circle background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #017791; /* Circle border color and width */
+        }
+    </style>
+</head>
+<body>
+
+<div class="circle" id="num"></div>
+
+<script>
+    // Function to get the URL parameter
+    function getURLParameter(name) {
+        name = name.replace(/[$]/, '\$').replace(/[$]/, '\$');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Get the num from the URL parameter
+    const num = getURLParameter('num');
+    document.getElementById('num').textContent = num ? num : '1';
+
+    // Set the color scheme based on the query parameter
+    function setColorScheme() {
+        const colorScheme = getURLParameter('color-scheme').toLowerCase();
+        if (colorScheme === "light") {
+            document.querySelector('meta[name="color-scheme"]').content = "light";
+        } else if (colorScheme === "dark") {
+            document.querySelector('meta[name="color-scheme"]').content = "dark";
+        }
+    }
+
+    setColorScheme();
+</script>
+
+</body>
+</html>
