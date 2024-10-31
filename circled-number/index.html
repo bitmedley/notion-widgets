@@ -6,7 +6,7 @@
     <meta name="color-scheme">
     <title>Circled Number</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://cdn.powercsv.com/file/display/favicon.ico" />
-    <link rel="canonical" href="https://notion-widgets.powercsv.com/circled-number/index.html" />    
+    <link rel="canonical" href="https://notion-widgets.powercsv.com/circled-number" />    
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
     <style>
         body {
@@ -16,6 +16,7 @@
             height: 100vh;
             margin: 0;
             font-family: 'Open Sans', sans-serif; /* Font family */
+            flex-direction: column; /* Stack items vertically */
         }
         .circle {
             color: white; /* Font color */
@@ -29,12 +30,27 @@
             justify-content: center;
             align-items: center;
             border: 3px solid #017791; /* Circle border color and width */
+            position: relative; /* Position relative for absolute elements */
+        }
+        .horizontal-line {
+            width: 50%; /* Increased width of the horizontal line */
+            height: 5px; /* Thickness of the horizontal line */
+            background-color: rgba(1, 119, 145, 0.5); /* Faded color of the circle */
+            margin-bottom: 20px; /* Space between the line and the circle */
+        }
+        .vertical-line {
+            width: 5px; /* Thickness of the vertical line */
+            height: 30px; /* Height equal to half the circle's radius */
+            background-color: rgba(1, 119, 145, 0.5); /* Faded color of the circle */
+            margin-top: -5px; /* Adjusts to touch the bottom of the circle */
         }
     </style>
 </head>
 <body>
 
+<div class="horizontal-line"></div> <!-- Horizontal line above the circle -->
 <div class="circle" id="num"></div>
+<div class="vertical-line"></div> <!-- Vertical line below the circle -->
 
 <script>
     // Function to get the URL parameter
