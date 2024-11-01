@@ -86,25 +86,13 @@
     function setColorScheme() {
         const colorScheme = getURLParameter('color-scheme').toLowerCase();
         if (colorScheme === "light") {
-            document.querySelector('meta[name="color-scheme"]').content = "light";
+            document.querySelector('meta[name="color-scheme"]').setAttribute("content", "light");
         } else if (colorScheme === "dark") {
-            document.querySelector('meta[name="color-scheme"]').content = "dark";
+            document.querySelector('meta[name="color-scheme"]').setAttribute("content", "dark");
         }
     }
 
     setColorScheme();
-	
-	window.addEventListener("message", function(event) {
-		if (event.data.colorScheme === "dark") {
-			// Update the meta color-scheme tag for dark color theme
-			document.querySelector('meta[name="color-scheme"]').setAttribute("content", "dark");
-		} else {
-			// Update the meta color-scheme tag for light color theme
-			document.querySelector('meta[name="color-scheme"]').setAttribute("content", "light");
-		}
-		// Send a message back to the parent window
-		window.parent.postMessage({ id: event.data.id }, event.origin);
-	});
 </script>
 
 </body>
