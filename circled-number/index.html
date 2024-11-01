@@ -24,6 +24,7 @@
             font-weight: bold; /* Font weight */
             width: 50px; /* Fixed width for the circle */
             height: 50px; /* Fixed height for the circle */
+            aspect-ratio: 1; /* Maintain aspect ratio for a perfect circle */
             border-radius: 50%; /* Circle effect */
             background-color: #017791; /* Circle background color */
             display: flex;
@@ -37,13 +38,28 @@
             height: 5px; /* Thickness of the horizontal line */
             background-color: rgba(1, 119, 145, 0.3); /* Faded color of the circle */
             margin-bottom: 20px; /* Space between the line and the circle */
-			margin-top: 20px; /* Space between the line and the circle */
+            margin-top: 5px; /* Space between the line and the top of the screen */
         }
         .vertical-line {
             width: 5px; /* Thickness of the vertical line */
             height: 30px; /* Height equal to half the circle's radius */
             background-color: rgba(1, 119, 145, 0.3); /* Faded color of the circle */
             margin-top: -5px; /* Adjusts to touch the bottom of the circle */
+        }
+
+        @media (max-height: 100px) { /* Adjust for very small screens */
+            .circle {
+                width: 40px; /* Smaller size for very small screens */
+                height: 40px; /* Smaller size for very small screens */
+            }
+            .horizontal-line {
+                height: 3px; /* Thinner horizontal line for small screens */
+                margin-bottom: 10px; /* Adjusted space between line and circle */
+            }
+            .vertical-line {
+                height: 20px; /* Shorter vertical line for small screens */
+                margin-top: -3px; /* Adjust to touch the bottom of the circle */
+            }
         }
     </style>
 </head>
@@ -77,6 +93,18 @@
     }
 
     setColorScheme();
+	
+	window.addEventListener("message", function(event) {
+		if (event.data.colorScheme === "dark") {
+			// Update the meta color-scheme tag for dark color theme
+			document.querySelector('meta[name="color-scheme"]').setAttribute("content", "dark");
+		} else {
+			// Update the meta color-scheme tag for light color theme
+			document.querySelector('meta[name="color-scheme"]').setAttribute("content", "light");
+		}
+		// Send a message back to the parent window
+		window.parent.postMessage({ id: event.data.id }, event.origin);
+	});
 </script>
 
 </body>
