@@ -50,10 +50,6 @@
             background-color: rgba(1, 119, 145, 0.3); /* Faded color of the circle */
             margin-top: -5px; /* Adjusts to touch the bottom of the circle */
         }
-        .color-scheme-value {
-            margin-top: 10px; /* Space above the color scheme value text */
-            font-size: 16px; /* Font size for color scheme value */
-        }
 
         @media (max-height: 100px) { /* Adjust for very small screens */
             .circle {
@@ -76,7 +72,6 @@
 <div class="horizontal-line"></div> <!-- Horizontal line above the circle -->
 <div class="circle" id="num"></div>
 <div class="vertical-line"></div> <!-- Vertical line below the circle -->
-<div class="color-scheme-value" id="color-scheme-value"></div> <!-- Div to show color scheme -->
 
 <script>
     // Function to get the URL parameter
@@ -94,7 +89,6 @@
     // Set the color scheme based on the query parameter
     function setColorScheme() {
         const colorScheme = getURLParameter('color-scheme').toLowerCase();
-        document.getElementById('color-scheme-value').textContent = colorScheme || 'default'; // Show color scheme value
         if (colorScheme === "light") {
             document.querySelector('meta[name="color-scheme"]').setAttribute("content", "light");
         } else if (colorScheme === "dark") {
