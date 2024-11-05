@@ -2,118 +2,107 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="color-scheme" content="light dark" />
-	<title>File Carousel | POWER CSV</title>
-	<link rel="shortcut icon" type="image/x-icon" href="https://cdn.powercsv.com/file/display/favicon.ico" />
-	<link rel="canonical" href="https://notion-widgets.powercsv.com/file-carousel" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script>
-		$(function() {
-			let searchParams = new URLSearchParams(window.location.search);
-			let metaColorScheme = '<meta name="color-scheme" content="light dark">';
-			if (searchParams.has('color-scheme')) {
-				let colorScheme = searchParams.get('color-scheme');
-				if (colorScheme === "dark") {
-					metaColorScheme = '<meta name="color-scheme" content="dark">';
-				} else if (colorScheme === "light") {
-					metaColorScheme = '<meta name="color-scheme" content="light">';
-				}
-			}
-			$('head [name="color-scheme"]').remove();
-			$('head').append(metaColorScheme);
-			$(".carousel").carousel({
-				interval: 1500,
-				keyboard: false,
-				pause: false,
-				ride: "carousel",
-				touch: false,
-				wrap: true
-			});
-		});
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark">
+    <title>File Carousel | POWER CSV</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.powercsv.com/file/display/favicon.ico" />
+    <link rel="canonical" href="https://notion-widgets.powercsv.com/file-carousel" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(function () {
+            const searchParams = new URLSearchParams(window.location.search);
+            const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
+            if (searchParams.has('color-scheme')) {
+                const colorScheme = searchParams.get('color-scheme');
+                if (colorScheme === "dark" || colorScheme === "light") {
+                    metaColorScheme.setAttribute("content", colorScheme);
+                }
+            }
 
-		window.addEventListener("message", function(event) {
-			if (event.data.colorScheme === "dark") {
-				// Update the meta color-scheme tag for dark color theme
-				document.querySelector('meta[name="color-scheme"]').setAttribute("content", "dark");
-			} else {
-				// Update the meta color-scheme tag for light color theme
-				document.querySelector('meta[name="color-scheme"]').setAttribute("content", "light");
-			}
-			// Send a message back to the parent window
-			window.parent.postMessage({ id: event.data.id }, event.origin);
-		});
-	</script>
-	<style>
-		body {
-			background-color: transparent !important;
-		}
+            initializeCarousel();
+        });
 
-		.carousel-item img {
-			margin: 0 auto !important;
-			height: 100vh !important;
-			max-width: 100vw !important;
-			object-fit: contain !important;
-		}
+        function initializeCarousel() {
+            $(".carousel").carousel({
+                interval: 1500,
+                keyboard: false,
+                pause: false,
+                ride: "carousel",
+                touch: false,
+                wrap: true
+            });
+        }
+    </script>
+    <style>
+        body {
+            background-color: transparent;
+        }
 
-		.carousel-item {
-			transition: transform 1.5s ease-in-out;
-			display: none;
-		}
+        .carousel-item img {
+            margin: 0 auto;
+            height: 100vh;
+            max-width: 100vw;
+            object-fit: contain;
+        }
 
-		.carousel-fade .active.carousel-item-start,
-		.carousel-fade .active.carousel-item-end {
-			transition: opacity 0s 1.5s;
-			display: block;
-		}
-	</style>
+        .carousel-item {
+            transition: transform 1.5s ease-in-out;
+            display: none;
+        }
+
+        .carousel-fade .active.carousel-item-start,
+        .carousel-fade .active.carousel-item-end {
+            transition: opacity 0s 1.5s;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
-	<div id="notionCarouselWidget" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel" data-bs-touch="false">
-		<div class="carousel-inner">
-			<div class="carousel-item active" data-bs-interval="2000">
-				<img class="d-block w-100" src="slide-01-file-group.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="1000">
-				<img class="d-block w-100" src="slide-02-new.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="1000">
-				<img class="d-block w-100" src="slide-03-open-file.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="2000">
-				<img class="d-block w-100" src="slide-04-import-file.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="1500">
-				<img class="d-block w-100" src="slide-05-advanced-import-settings-parsing-and-detection.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="1500">
-				<img class="d-block w-100" src="slide-06-advanced-import-settings-formatting-and-display.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="1500">
-				<img class="d-block w-100" src="slide-07-advanced-import-settings-theme-style.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="1500">
-				<img class="d-block w-100" src="slide-08-import-from-clipboard.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="1000">
-				<img class="d-block w-100" src="slide-09-save-file.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="1000">
-				<img class="d-block w-100" src="slide-10-save-file-as.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="2000">
-				<img class="d-block w-100" src="slide-11-export-file-formatted-values.png" data-color="transparent" />
-			</div>
-			<div class="carousel-item" data-bs-interval="2000">
-				<img class="d-block w-100" src="slide-12-export-file-us-values.png" data-color="transparent" />
-			</div>
-		</div>
-	</div>
+    <div id="notionCarouselWidget" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel" data-bs-touch="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img class="d-block w-100" src="slide-01-file-group.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="1000">
+                <img class="d-block w-100" src="slide-02-new.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="1000">
+                <img class="d-block w-100" src="slide-03-open-file.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img class="d-block w-100" src="slide-04-import-file.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="1500">
+                <img class="d-block w-100" src="slide-05-advanced-import-settings-parsing-and-detection.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="1500">
+                <img class="d-block w-100" src="slide-06-advanced-import-settings-formatting-and-display.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="1500">
+                <img class="d-block w-100" src="slide-07-advanced-import-settings-theme-style.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="1500">
+                <img class="d-block w-100" src="slide-08-import-from-clipboard.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="1000">
+                <img class="d-block w-100" src="slide-09-save-file.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="1000">
+                <img class="d-block w-100" src="slide-10-save-file-as.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img class="d-block w-100" src="slide-11-export-file-formatted-values.png" data-color="transparent" />
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img class="d-block w-100" src="slide-12-export-file-us-values.png" data-color="transparent" />
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

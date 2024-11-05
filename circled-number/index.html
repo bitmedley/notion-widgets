@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <meta name="color-scheme" content="light dark">
     <title>Circled Number</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://cdn.powercsv.com/file/display/favicon.ico" />
-    <link rel="canonical" href="https://notion-widgets.powercsv.com/circled-number" />    
+    <link rel="canonical" href="https://notion-widgets.powercsv.com/circled-number" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
     <style>
         body {
-			background: transparent;
+            background: transparent;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,6 +20,7 @@
             font-family: 'Open Sans', sans-serif; /* Font family */
             flex-direction: column; /* Stack items vertically */
         }
+
         .circle {
             color: white; /* Font color */
             font-size: 20px; /* Font size */
@@ -35,8 +34,8 @@
             justify-content: center;
             align-items: center;
             border: 3px solid #017791; /* Circle border color and width */
-            position: relative; /* Position relative for absolute elements */
         }
+
         .horizontal-line {
             width: 100%; /* Increased width of the horizontal line */
             height: 5px; /* Thickness of the horizontal line */
@@ -44,6 +43,7 @@
             margin-bottom: 20px; /* Space between the line and the circle */
             margin-top: 5px; /* Space between the line and the top of the screen */
         }
+
         .vertical-line {
             width: 5px; /* Thickness of the vertical line */
             height: 30px; /* Height equal to half the circle's radius */
@@ -56,10 +56,12 @@
                 width: 40px; /* Smaller size for very small screens */
                 height: 40px; /* Smaller size for very small screens */
             }
+
             .horizontal-line {
                 height: 3px; /* Thinner horizontal line for small screens */
                 margin-bottom: 10px; /* Adjusted space between line and circle */
             }
+
             .vertical-line {
                 height: 20px; /* Shorter vertical line for small screens */
                 margin-top: -3px; /* Adjust to touch the bottom of the circle */
@@ -67,6 +69,7 @@
         }
     </style>
 </head>
+
 <body>
 
 <div class="horizontal-line"></div> <!-- Horizontal line above the circle -->
@@ -74,29 +77,16 @@
 <div class="vertical-line"></div> <!-- Vertical line below the circle -->
 
 <script>
-    // Function to get the URL parameter
-    function getURLParameter(name) {
-        name = name.replace(/[$]/, '\$').replace(/[$]/, '\$');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        var results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    // Get URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const num = params.get('num') || '1'; // Default to '1' if 'num' is not found
+    const colorScheme = params.get('color-scheme') ? params.get('color-scheme').toLowerCase() : '';
+
+    // Set the text content and color scheme
+    document.getElementById('num').textContent = num;
+    if (colorScheme === "light" || colorScheme === "dark") {
+        document.querySelector('meta[name="color-scheme"]').setAttribute("content", colorScheme);
     }
-
-    // Get the num from the URL parameter
-    const num = getURLParameter('num');
-    document.getElementById('num').textContent = num ? num : '1';
-
-    // Set the color scheme based on the query parameter
-    function setColorScheme() {
-        const colorScheme = getURLParameter('color-scheme').toLowerCase();
-        if (colorScheme === "light") {
-            document.querySelector('meta[name="color-scheme"]').setAttribute("content", "light");
-        } else if (colorScheme === "dark") {
-            document.querySelector('meta[name="color-scheme"]').setAttribute("content", "dark");
-        }
-    }
-
-    setColorScheme();
 </script>
 
 </body>
