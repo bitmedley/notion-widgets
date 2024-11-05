@@ -2,115 +2,95 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
-    <title>Download Button</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.powercsv.com/file/display/favicon.ico" />
-    <link rel="canonical" href="https://notion-widgets.powercsv.com/download-button" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <style>
-        body {
-            background-color: transparent;
-            display: flex;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #buttonDiv {
-            display: none;
-        }
-
-        #buttonAnchor {
-            font-size: 16px;
-            font-weight: 400;
-            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-            border-radius: 3px;
-            color: white;
-            background-color: #017791;
-            cursor: pointer;
-            display: inline-block;
-            line-height: 18px;
-            padding: 10px 20px;
-            text-decoration: none;
-        }
-
-        #buttonAnchor:hover,
-        #buttonAnchor:focus {
-            background-color: #285265;
-        }
-
-        .fa-download {
-            margin-right: 6px;
-            position: relative;
-            top: -1px;
-        }
-
-        .align-left {
-            justify-content: flex-start;
-        }
-
-        .align-right {
-            justify-content: flex-end;
-        }
-
-        .align-center {
-            justify-content: center;
-        }
-
-        .valign-start {
-            align-items: flex-start;
-        }
-
-        .valign-end {
-            align-items: flex-end;
-        }
-
-        .valign-center {
-            align-items: center;
-        }
-    </style>
-    
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlForButton = urlParams.get('url');
-
-        if (urlForButton && urlForButton.includes('powercsv.com')) {
-            const buttonText = urlParams.get('text') || 'Download';
-            const buttonAnchor = document.getElementById("buttonAnchor");
-
-            buttonAnchor.setAttribute('href', urlForButton);
-            buttonAnchor.innerHTML = `<i class="fa fa-download"></i><span>${buttonText}</span>`;
-
-            if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-                buttonAnchor.setAttribute('target', '_blank');
-            }
-
-            // Set color scheme
-            const colorScheme = urlParams.get('color-scheme');
-            if (colorScheme) {
-                document.querySelector('meta[name="color-scheme"]').setAttribute("content", colorScheme.toLowerCase());
-            }
-
-            // Set alignment
-            const hAlign = urlParams.get('halign') || 'center';
-            const vAlign = urlParams.get('valign') || 'center';
-
-            document.body.classList.add(`align-${hAlign}`);
-            document.body.classList.add(`valign-${vAlign}`);
-
-            // Show the button
-            document.getElementById('buttonDiv').style.display = 'block';
-        }
-    </script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="color-scheme" content="light dark">
+	<title>Download Button</title>
+	<link rel="shortcut icon" type="image/x-icon" href="https://cdn.powercsv.com/file/display/favicon.ico" />
+	<link rel="canonical" href="https://notion-widgets.powercsv.com/download-button" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script>
+	function getQueryParams() {
+		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=Download&halign=center&color-scheme=dark&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
+		//ex. url parameters: https://notion-widgets.powercsv.com/download-button/index.html?text=DontCorruptMe.csv&halign=center&valign=start&url=https%3A%2F%2Fcdn.powercsv.com%2Ffile%2Fdisplay%2FDontCorruptMe.csv
+		//encode URL using https://www.urlencoder.org/
+		
+		var searchParams = new URLSearchParams(window.location.search);
+		const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
+		var urlForButton = searchParams.get('url');
+		if(!urlForButton.includes('powercsv.com')) return; 
+		var buttonText = searchParams.get('text');
+		var buttonAnchor = document.getElementById("buttonAnchor");
+		buttonAnchor.setAttribute('href', urlForButton);
+		buttonAnchor.innerHTML = '<i class="fa fa-download"></i><span>' + buttonText + '</span>';
+		var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+		if(iOS) {
+			buttonAnchor.setAttribute('target', '_blank');
+		}
+		if(searchParams.has('color-scheme')) {
+			const colorScheme = searchParams.get('color-scheme');
+			if (colorScheme === "dark" || colorScheme === "light") {
+				metaColorScheme.setAttribute("content", colorScheme);
+			}
+		}
+		if(searchParams.has('halign')) {
+			var hAlign = searchParams.get('halign').toLowerCase();
+			if(hAlign !== 'left' && hAlign !== 'right') hAlign = 'center';
+			document.body.style.justifyContent = hAlign;
+		}
+		if(searchParams.has('valign')) {
+			var vAlign = searchParams.get('valign').toLowerCase();
+			if(vAlign !== 'start' && vAlign !== 'end') vAlign = 'center';
+			document.body.style.alignItems = vAlign;
+		}
+		var style = document.createElement('style');
+		style.innerHTML = `#buttonDiv {display: block;}`;
+		document.head.appendChild(style);
+	}
+	</script>
+	<style>
+	body {
+		background-color: transparent;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+		margin: 0;
+	}
+	
+	#buttonDiv {
+		display: none;
+	}
+	
+	#buttonAnchor {
+		font-size: 16px;
+		font-weight: 400;
+		font-family: open sans, Helvetica, Arial, sans-serif;
+		border-radius: 3px;
+		color: white;
+		background-color: #017791;
+		cursor: pointer;
+		display: inline-block;
+		line-height: 18px;
+		padding: 10px 20px;
+		text-decoration: none;
+	}
+	
+	#buttonAnchor:hover,
+	#buttonAnchor:focus {
+		background-color: #285265;
+	}
+	
+	.fa-download {
+		margin-right: 6px;
+		position: relative;
+		top: -1px;
+	}
+	</style>
 </head>
 
-<body>
-    <div id="buttonDiv">
-        <a id="buttonAnchor" href="" download></a>
-    </div>
+<body onload="getQueryParams()">
+	<div id="buttonDiv"> <a id="buttonAnchor" href="" download><i class="fa fa-download"></i><span></span></a> </div>
 </body>
-
 </html>
