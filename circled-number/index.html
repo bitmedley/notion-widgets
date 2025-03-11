@@ -9,6 +9,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://cdn.powercsv.com/file/display/favicon.ico" />
     <link rel="canonical" href="https://notion-widgets.powercsv.com/circled-number" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         body {
             background: transparent;
@@ -80,13 +81,27 @@
     // Get URL parameters
     const params = new URLSearchParams(window.location.search);
     const num = params.get('num') || '1'; // Default to '1' if 'num' is not found
-    const colorScheme = params.get('color-scheme') ? params.get('color-scheme').toLowerCase() : '';
-
-    // Set the text content and color scheme
     document.getElementById('num').textContent = num;
-    if (colorScheme === "light" || colorScheme === "dark") {
-        document.querySelector('meta[name="color-scheme"]').setAttribute("content", colorScheme);
-    }
+	
+	$(function () {
+		const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
+		
+		// Listen for messages from parent
+		window.addEventListener('message', function(event) {
+			if (event.data && event.data.action === 'setColorScheme') {
+				const colorScheme = event.data.colorScheme;
+				
+				if (colorScheme === "dark" || colorScheme === "light") {
+					metaColorScheme.setAttribute("content", colorScheme);
+					
+					// Send confirmation back to parent
+					event.source.postMessage({ 
+						action: 'colorSchemeSet' 
+					}, '*');
+				}
+			}
+		});
+	});
 </script>
 
 </body>
