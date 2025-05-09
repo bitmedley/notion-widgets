@@ -122,12 +122,11 @@
                 touch: true,
                 pause: "hover"
             }
-
         };
 
         $(function() {
             const searchParams = new URLSearchParams(window.location.search);
-            const id = searchParams.get('id') || 'import-from-clipboard';
+            const id = searchParams.get('id') || 'import-file';
             const config = CAROUSEL_CONFIGS[id];
             
             // Format the ID into a title
