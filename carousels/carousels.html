@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Carousels | POWER CSV</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.powercsv.com/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        const CAROUSEL_IDS = [
+            'file',
+            'import',
+            'import-file',
+            'import-from-clipboard',
+            'advanced-import-settings',
+            'export',
+            'export-file',
+            'settings-save-file'
+        ];
+
+        function isLocalEnvironment() {
+            const hostname = window.location.hostname;
+            return hostname === 'localhost' || 
+                   hostname === '127.0.0.1' || 
+                   hostname === '' ||  // for file:// protocol
+                   hostname.includes('.local');
+        }
+
+        function getBasePath() {
+            return isLocalEnvironment() ? 'index.html' : '';
+        }
+
+        function formatTitle(id) {
+            return id.split('-')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Could add a toast or notification here
+                console.log('Link copied to clipboard');
+            });
+        }
+
+        function generateCarouselList() {
+            const listElement = document.getElementById('carouselList');
+            const basePath = getBasePath();
+            
+            CAROUSEL_IDS.forEach(id => {
+                const title = formatTitle(id);
+                const baseUrl = `${basePath}?id=${id}`;
+                const li = document.createElement('li');
+                
+                li.innerHTML = `
+                    <a href="${baseUrl}" class="carousel-link">${title} Carousel</a>
+                    <div class="theme-toggle">
+                        <a href="${baseUrl}&color-scheme=light" class="btn btn-sm btn-outline-primary">Light</a>
+                        <a href="${baseUrl}&color-scheme=dark" class="btn btn-sm btn-outline-primary">Dark</a>
+                        <button onclick="copyToClipboard('${window.location.origin}${window.location.pathname.replace('carousels.html', baseUrl)}')" 
+                                class="btn btn-sm btn-outline-secondary">
+                            Copy Link
+                        </button>
+                    </div>
+                `;
+                
+                listElement.appendChild(li);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', generateCarouselList);
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .carousel-list {
+            list-style: none;
+            padding: 0;
+        }
+        .carousel-list li {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .carousel-list li:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        .carousel-link {
+            text-decoration: none;
+            color: #0d6efd;
+            font-size: 1.1em;
+            display: block;
+        }
+        .carousel-link:hover {
+            color: #0a58ca;
+        }
+        .theme-toggle {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #212529;
+                color: #f8f9fa;
+            }
+            .carousel-list li {
+                border-color: #495057;
+            }
+            .carousel-list li:hover {
+                background-color: #343a40;
+            }
+            .carousel-link {
+                color: #6ea8fe;
+            }
+            .carousel-link:hover {
+                color: #9ec5fe;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">POWER CSV Carousels</h1>
+        <ul id="carouselList" class="carousel-list">
+            <!-- Carousel list will be generated here -->
+        </ul>
+    </div>
+</body>
+</html>
