@@ -17,10 +17,16 @@
             'advanced-import-settings',
             'export',
             'export-file',
+			'export-values',
+			'settings',
             'settings-appearance',
             'settings-theme',
             'settings-behavior',
-            'settings-save-file'
+			'settings-advanced-import-settings',
+			'settings-file-default-inputs',
+            'settings-save-file',
+			'settings-edit-default-inputs',
+			'settings-task-pane-default-inputs'
         ];
 
         function isLocalEnvironment() {
@@ -62,8 +68,8 @@
                 li.innerHTML = `
                     <a href="${baseUrl}?id=${id}" class="carousel-link">${title} Carousel</a>
                     <div class="theme-toggle">
-                        <a href="${baseUrl}?id=${id}&color-scheme=light" class="btn btn-sm btn-outline-primary">Light</a>
-                        <a href="${baseUrl}?id=${id}&color-scheme=dark" class="btn btn-sm btn-outline-primary">Dark</a>
+                        <a href="${baseUrl}?id=${id}&color-scheme=light" class="btn btn-sm btn-outline-primary" target="_blank">Light</a>
+                        <a href="${baseUrl}?id=${id}&color-scheme=dark" class="btn btn-sm btn-outline-primary" target="_blank">Dark</a>
                         <button onclick="copyToClipboard('${window.location.origin}${baseUrl}?id=${id}')" 
                                 class="btn btn-sm btn-outline-secondary">
                             Copy Link

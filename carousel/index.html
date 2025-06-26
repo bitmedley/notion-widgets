@@ -110,6 +110,59 @@
                 touch: true,
                 pause: "hover"
             },
+			'export-values': {
+                slides: [
+                    '01-export-values-iso-8601.png',
+                    '02-export-values-system-settings.png',
+					'03-export-values-en-US.png',
+                    '04-export-values-en-GB.png',
+					'05-export-values-en-CA.png',
+                    '06-export-values-en-AU.png',
+					'07-export-values-en-IN.png',
+                    '08-export-values-ar-SA.png',
+					'09-export-values-zh-CN.png',
+                    '10-export-values-nl-NL.png',
+					'11-export-values-zh-HK.png',
+                    '12-export-values-fr-CA.png',
+					'13-export-values-fr-FR.png',
+                    '14-export-values-fr-CH.png',
+					'15-export-values-de-DE.png',
+                    '16-export-values-de-CH.png',
+					'17-export-values-hi-IN.png',
+                    '18-export-values-it-IT.png',
+					'19-export-values-it-CH.png',
+                    '20-export-values-ja-JP.png',
+					'21-export-values-ko-KR.png',
+                    '22-export-values-pt-BR.png',
+					'23-export-values-ru-RU.png',
+                    '24-export-values-ru-UA.png',
+					'25-export-values-es-MX.png',
+                    '26-export-values-es-ES.png',
+					'27-export-values-tr-TR.png'
+                ],
+                interval: 3000,
+                showControls: true,
+                showIndicators: true,
+                touch: true,
+                pause: "hover"
+            },
+			'settings': {
+                slides: [
+                    'settings-appearance/01-settings-theme.png',
+                    'settings-appearance/02-settings-ribbon-tab-and-task-panes.png',
+                    'settings-behavior/01-settings-updates-and-error-reporting.png',
+                    'settings-behavior/02-settings-error-checking-rules.png',
+                    'settings-behavior/03-settings-progress-bars.png',
+                    'settings-behavior/04-settings-file-explorer.png',
+                    'settings-behavior/05-settings-multi-sheet-csv-settings.png'
+					
+                ],
+                interval: 3000,
+                showControls: true,
+                showIndicators: true,
+                touch: true,
+                pause: "hover"
+            },
             'settings-appearance': {
                 slides: [
                     '01-settings-theme.png',
@@ -157,6 +210,55 @@
                 touch: true,
                 pause: "hover"
             },
+			'settings-advanced-import-settings': {
+                slides: [
+                    '01-settings-parsing-and-detection.png',
+                    '02-settings-formatting-and-display.png',
+                    '03-settings-table-style-1.png'
+                ],
+                interval: 3000,
+                showControls: true,
+                showIndicators: true,
+                touch: true,
+                pause: "hover"
+            },
+			'settings-advanced-export-settings': {
+                slides: [
+                    '01-settings-export-settings.png'
+                ],
+                interval: 3000,
+                showControls: true,
+                showIndicators: true,
+                touch: true,
+                pause: "hover"
+            },
+			'settings-file-default-inputs': {
+                slides: [
+                    '01-settings-new.png',
+                    '02-settings-open-file-1.png',
+                    '03-settings-open-file-2.png',
+					'04-settings-import-file-1.png',
+                    '05-settings-import-file-2.png',
+                    '06-settings-import-from-clipboard-1.png',
+					'07-settings-import-from-clipboard-2.png',
+                    '08-settings-save-file-1.png',
+                    '09-settings-save-file-2.png',
+					'10-settings-save-file-3.png',
+                    '11-settings-export-file-1.png',
+                    '12-settings-export-file-2.png',
+					'13-settings-export-file-3.png',
+                    '14-settings-export-new-file-1.png',
+                    '15-settings-export-new-file-2.png',
+					'16-settings-export-new-file-3.png',
+                    '02-settings-formatting-and-display.png',
+                    '03-settings-table-style-1.png',
+                ],
+                interval: 3000,
+                showControls: true,
+                showIndicators: true,
+                touch: true,
+                pause: "hover"
+            },
             'settings-save-file': {
                 slides: [
                     '01-settings-save-file.png',
@@ -168,7 +270,34 @@
                 showIndicators: true,
                 touch: true,
                 pause: "hover"
-            }
+            },
+			'settings-edit-default-inputs': {
+                slides: [
+                    '01-settings-insert.png',
+                    '02-settings-sort.png',
+                    '03-settings-find-duplicates.png'
+                ],
+                interval: 3000,
+                showControls: true,
+                showIndicators: true,
+                touch: true,
+                pause: "hover"
+            },
+			'settings-task-pane-default-inputs': {
+                slides: [
+                    '01-settings-filter-views.png',
+                    '02-settings-record-editor.png',
+                    '03-settings-cell-editor.png',
+					'04-settings-name-editor-1.png',
+                    '05-settings-name-editor-2.png',
+                    '06-settings-properties-and-connections.png',
+                ],
+                interval: 3000,
+                showControls: true,
+                showIndicators: true,
+                touch: true,
+                pause: "hover"
+            },
         };
 
         $(function() {
@@ -193,50 +322,54 @@
             initializeCarousel(config);
         });
 
-        function generateCarousel(config) {
-            const carousel = $('#notionCarouselWidget');
-            const id = new URLSearchParams(window.location.search).get('id') || 'import-file';
-            
-            if (config.showIndicators) {
-                let indicators = '<div class="carousel-indicators">';
-                config.slides.forEach((slide, index) => {
-                    indicators += `
-                        <button type="button" data-bs-target="#notionCarouselWidget" 
-                            data-bs-slide-to="${index}" 
-                            ${index === 0 ? 'class="active" aria-current="true"' : ''} 
-                            aria-label="slide-${index + 1}">
-                        </button>`;
-                });
-                indicators += '</div>';
-                carousel.append(indicators);
-            }
+		function generateCarousel(config) {
+			const carousel = $('#notionCarouselWidget');
+			const id = new URLSearchParams(window.location.search).get('id') || 'import-file';
+			
+			const resolvePath = (path) => {
+				return path.includes("/") ? path : `${id}/${path}`;
+			};
 
-            let slides = '<div class="carousel-inner">';
-            config.slides.forEach((slide, index) => {
-                const src = typeof slide === 'string' ? slide : slide.src;
-                const interval = typeof slide === 'string' ? config.interval : slide.interval;
-                slides += `
-                    <div class="carousel-item ${index === 0 ? 'active' : ''}" 
-                        ${interval ? `data-bs-interval="${interval}"` : ''}>
-                        <img class="d-block w-100" src="${id}/${src}" data-color="transparent">
-                    </div>`;
-            });
-            slides += '</div>';
-            carousel.append(slides);
+			if (config.showIndicators) {
+				let indicators = '<div class="carousel-indicators">';
+				config.slides.forEach((slide, index) => {
+					indicators += `
+						<button type="button" data-bs-target="#notionCarouselWidget" 
+							data-bs-slide-to="${index}" 
+							${index === 0 ? 'class="active" aria-current="true"' : ''} 
+							aria-label="slide-${index + 1}">
+						</button>`;
+				});
+				indicators += '</div>';
+				carousel.append(indicators);
+			}
 
-            if (config.showControls) {
-                const controls = `
-                    <button class="carousel-control-prev" type="button" data-bs-target="#notionCarouselWidget" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#notionCarouselWidget" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>`;
-                carousel.append(controls);
-            }
-        }
+			let slides = '<div class="carousel-inner">';
+			config.slides.forEach((slide, index) => {
+				const src = typeof slide === 'string' ? resolvePath(slide) : resolvePath(slide.src);
+				const interval = typeof slide === 'string' ? config.interval : slide.interval;
+				slides += `
+					<div class="carousel-item ${index === 0 ? 'active' : ''}" 
+						${interval ? `data-bs-interval="${interval}"` : ''}>
+						<img class="d-block w-100" src="${src}" data-color="transparent">
+					</div>`;
+			});
+			slides += '</div>';
+			carousel.append(slides);
+
+			if (config.showControls) {
+				const controls = `
+					<button class="carousel-control-prev" type="button" data-bs-target="#notionCarouselWidget" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#notionCarouselWidget" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>`;
+				carousel.append(controls);
+			}
+		}
 
         function initializeCarousel(config) {
           const carouselElement = document.querySelector('#notionCarouselWidget');
